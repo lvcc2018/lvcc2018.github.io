@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Chuancheng Lv | 吕传承</title><meta name="author" content="Chuancheng Lv"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Chuancheng Lv | 吕传承</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/About"> About</a></li><li class="menus_item"><a class="site-page" href="/Blog"> Blog</a></li><li class="menus_item"><a class="site-page" href="/Diary"> Diary</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.jpeg'" alt="avatar"></div><div class="author-discrip"><h3>Chuancheng Lv</h3><p class="author-bio">A first-year graduate student at Tsinghua University.</p></div><div class="author-links"><button class="btn m-social-links">Links</button></div></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">Plug and Play Language Models: A Simple Approach to Controlled Text Generation</h2><article><ul>
+<li>机构：Uber AI</li>
+<li>问题：已有的风格迁移方法需要对预训练语言模型进行Finetune或者从头开始训练，修改LMs耗时耗力；</li>
+<li>任务：在不修改LM的情况下进行可控风格的文本生成。</li>
+<li>方案：PPLM的关键在于改写可控文本生成的条件概率公式P(x|a)为P(a|x)P(x)<ul>
+<li>前向过程：包括语言模型和属性判别模型，之后预测出P(a|x);</li>
+<li>反向过程：根据属性判别模型回传的梯度，更新语言模型内部历史状态，使得实际预测更接近想要属性；</li>
+<li>重新采样：根据获得的新输出概率分布，采样生成一个新的词。<br>同时使用控制Kullback–Leibler散度和Post-norm Geometric Mean Fusion来保证流利性。属性判别器包括词袋模型以及简单的分类器等。</li>
+</ul>
+</li>
+<li>代码：<a target="_blank" rel="noopener" href="https://github.com/uber-research/PPLM">https://github.com/uber-research/PPLM</a></li>
+<li>框架：GPT2 + Discriminator attribute models</li>
+<li>数据集：SST-5，IMDB movie reviews</li>
+<li>贡献：<ul>
+<li>提出了PPLM模型，可以在不改变预训练语言模型的情况下进行可控文本生成，极大减少了需要训练的参数量。</li>
+<li>可以进行较为流畅的可控文本生成，同时可以进行文本去毒（detoxification）。</li>
+</ul>
+</li>
+<li>总结：PPLM不需要对LM进行修改，在减少计算量的同时可以达到比较好的生成效果。</li>
+</ul>
+</article></div></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/Publications"> Publications</a></li><li class="nav_item"><a class="nav-page" href="/About"> About</a></li><li class="nav_item"><a class="nav-page" href="/Blog"> Blog</a></li><li class="nav_item"><a class="nav-page" href="/Diary"> Diary</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2020 - 2021 by Chuancheng Lv</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script></body></html>
