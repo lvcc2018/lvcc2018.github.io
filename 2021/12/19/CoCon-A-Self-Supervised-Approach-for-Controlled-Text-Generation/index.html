@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Chuancheng Lv | 吕传承</title><meta name="author" content="Chuancheng Lv"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Chuancheng Lv | 吕传承</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/Blog"> Blog</a></li><li class="menus_item"><a class="site-page" href="/Diary"> Diary</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.jpeg'" alt="avatar"></div><div class="author-discrip"><h3>Chuancheng Lv</h3><p class="author-bio">A first-year graduate student at Tsinghua University.</p></div><div class="author-links"><button class="btn m-social-links">Links</button></div></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">CoCon: A Self-Supervised Approach for Controlled Text Generation</h2><article><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>大部分可控文本生成任务针对的是控制high-level attributes，而缺乏在content level的更加精细的控制。作者希望给定引导文本和控制文本，模型生成和引导文本保持流畅，内容上大致包含控制文本的文本，实现在字层级或者句子层级的更加细粒度的精确控制，生成可控的下文。<br>$$<br>p(x_t,…,x_l|x_1,…,x_{t-1}) = \prod \limits_{i=1}^lp(x_i|\bold{c},{x_1,…,x_{i-1}})<br>$$</p>
-<h2 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h2><h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><p>提出一个Content-Conditioner (CoCon) 模型，包括预训练语言模型和一个轻量级的CoCon layer（单层Transformer block），用于融合控制文本和输入文本的信息。采用自监督的方式训练，提出多种自监督损失，在GPT2的基础上（使用GPT-2，前七层作为编码器，后17层作为解码器，且固定所有参数），训练CoCon模块。</p>
-<img src="image1.png" alt="image1" style="zoom:50%;" />
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Chuancheng Lv | 吕传承</title><meta name="author" content="Chuancheng Lv"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Chuancheng Lv | 吕传承</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/Blog"> Blog</a></li><li class="menus_item"><a class="site-page" href="/Diary"> Diary</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.jpeg'" alt="avatar"></div><div class="author-discrip"><h3>Chuancheng Lv</h3><p class="author-bio">A first-year graduate student at Tsinghua University.</p></div><div class="author-links"><button class="btn m-social-links">Links</button></div></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">CoCon: A Self-Supervised Approach for Controlled Text Generation</h2><article><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>大部分可控文本生成任务针对的是控制high-level attributes，而缺乏在content level的更加精细的控制。作者希望给定引导文本和控制文本，模型生成和引导文本保持流畅，内容上大致包含控制文本的文本，实现在字层级或者句子层级的更加细粒度的精确控制，生成可控的下文。</p>
+<script type="math/tex; mode=display">
+p(x_t,...,x_l|x_1,...,x_{t-1}) = \prod \limits_{i=1}^lp(x_i|\bold{c},\{x_1,...,x_{i-1}\})</script><h2 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h2><h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><p>提出一个Content-Conditioner (CoCon) 模型，包括预训练语言模型和一个轻量级的CoCon layer（单层Transformer block），用于融合控制文本和输入文本的信息。采用自监督的方式训练，提出多种自监督损失，在GPT2的基础上（使用GPT-2，前七层作为编码器，后17层作为解码器，且固定所有参数），训练CoCon模块。</p>
+<p><img src="image1.png" alt="image1" style="zoom:50%;" /></p>
 <ol>
 <li>使用编码器编码给定的引导文本和控制文本，分别得到对应的特征。</li>
 <li>将两个特征送入CoCon模块中，通过自注意力机制进行交互，得到新的特征。</li>
@@ -9,14 +9,15 @@
 </ol>
 <h3 id="CoCon模块"><a href="#CoCon模块" class="headerlink" title="CoCon模块"></a>CoCon模块</h3><p>CoCon是一个单层的Transformer Block（self-attention + ffn），主要流程为：</p>
 <ol>
-<li><p>计算引导文本的Q、K、V以及控制文本的K、V。将K、V进行拼接，然后通过自注意力。<br> $$<br> \mathbf{K}^{\prime}=\left[\mathbf{K}^{(\mathbf{c})} ; \mathbf{K}\right], \quad \mathbf{V}^{\prime}=\left[\mathbf{V}^{(\mathbf{c})} ; \mathbf{V}\right], \quad \mathbf{A}=\operatorname{Softmax}\left(\mathbf{Q K}^{\prime \top}\right) \mathbf{V}^{\prime}=\operatorname{Softmax}(\mathbf{W}) \mathbf{V}^{\prime}<br> $$</p>
-</li>
-<li><p>经过position-wise feed-forward layer后与原先的中间表示连接，然后通过解码器。<br> $$<br> \mathbf{h}<em>{i}^{\prime}=\mathrm{FF}\left(\mathbf{a}</em>{i}\right), \quad \tilde{\mathbf{o}}<em>{t}=\mathrm{LM}</em>{\beta}\left(\left[\mathbf{h}<em>{: t-2} ; \mathbf{h}</em>{t-1}^{\prime}\right]\right), \quad p_{\theta, \psi}\left(\tilde{x}<em>{t} \mid \mathbf{c}, x</em>{: t-1}\right)=\operatorname{Softmax}\left(\tilde{\mathbf{o}}_{t}\right)<br> $$</p>
-</li>
+<li><p>计算引导文本的Q、K、V以及控制文本的K、V。将K、V进行拼接，然后通过自注意力。</p>
+<script type="math/tex; mode=display">
+ \mathbf{K}^{\prime}=\left[\mathbf{K}^{(\mathbf{c})} ; \mathbf{K}\right], \quad \mathbf{V}^{\prime}=\left[\mathbf{V}^{(\mathbf{c})} ; \mathbf{V}\right], \quad \mathbf{A}=\operatorname{Softmax}\left(\mathbf{Q K}^{\prime \top}\right) \mathbf{V}^{\prime}=\operatorname{Softmax}(\mathbf{W}) \mathbf{V}^{\prime}</script></li>
+<li><p>经过position-wise feed-forward layer后与原先的中间表示连接，然后通过解码器。</p>
+<script type="math/tex; mode=display">
+ \mathbf{h}_{i}^{\prime}=\mathrm{FF}\left(\mathbf{a}_{i}\right), \quad \tilde{\mathbf{o}}_{t}=\mathrm{LM}_{\beta}\left(\left[\mathbf{h}_{: t-2} ; \mathbf{h}_{t-1}^{\prime}\right]\right), \quad p_{\theta, \psi}\left(\tilde{x}_{t} \mid \mathbf{c}, x_{: t-1}\right)=\operatorname{Softmax}\left(\tilde{\mathbf{o}}_{t}\right)</script></li>
 </ol>
 <p>如果有多个控制文本，则可以将控制文本进行拼接即可，较为方便灵活。同时可以在注意力权重矩阵上增加偏置项，来调整对于控制文本c的关注程度。</p>
-<h3 id="损失函数设置"><a href="#损失函数设置" class="headerlink" title="损失函数设置"></a>损失函数设置</h3><img src="image2.png" alt="image2" style="zoom:50%;" />
-
+<h3 id="损失函数设置"><a href="#损失函数设置" class="headerlink" title="损失函数设置"></a>损失函数设置</h3><p><img src="image2.png" alt="image2" style="zoom:50%;" /></p>
 <p>由于没有现成的监督语料，所以选择无监督的方式进行，即将已有的句子分成两部分x = [p, q]。</p>
 <ol>
 <li>自重构损失：令控制文本c = q，即生成q本身，让模型学习融入控制文本的内容。</li>
@@ -36,11 +37,14 @@
 </ul>
 <h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><ol>
 <li><p>文本控制</p>
- <img src="image3.png" alt="image3" style="zoom:50%;" /></li>
+<p> <img src="image3.png" alt="image3" style="zoom:50%;" /></p>
+</li>
 <li><p>主题控制</p>
- <img src="image4.png" alt="image4" style="zoom:50%;" /></li>
+<p> <img src="image4.png" alt="image4" style="zoom:50%;" /></p>
+</li>
 <li><p>情感控制</p>
- <img src="image5.png" alt="image25" style="zoom:50%;" /></li>
+<p> <img src="image5.png" alt="image25" style="zoom:50%;" /></p>
+</li>
 </ol>
 <h2 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h2><ul>
 <li>提出基于文本变量的可控文本模型CoCon，用于Content level的可控文本生成。</li>
