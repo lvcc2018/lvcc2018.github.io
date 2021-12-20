@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Chuancheng Lv | 吕传承</title><meta name="author" content="Chuancheng Lv"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Chuancheng Lv | 吕传承</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/Blog"> Blog</a></li><li class="menus_item"><a class="site-page" href="/Diary"> Diary</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.jpeg'" alt="avatar"></div><div class="author-discrip"><h3>Chuancheng Lv</h3><p class="author-bio">A first-year graduate student at Tsinghua University.</p></div><div class="author-links"><button class="btn m-social-links">Links</button></div></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">Creative Storytelling with Language Models and Knowledge Graphs</h2><article><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ol>
+<li>语言模型生成的文本语法、句法和标点错误极少，但蕴含的常识信息更少，生成的内容难以控制；</li>
+<li>利用知识图谱embedding融入知识的方法较为复杂且耗时，而知识图谱更新快；</li>
+</ol>
+<h2 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h2><h3 id="Story-generation"><a href="#Story-generation" class="headerlink" title="Story generation"></a>Story generation</h3><ol>
+<li>故事生成是一个knowled-intensive process，开放域的故事生成没有pre-defined domain model；</li>
+<li>故事生成要求故事要novel且appropriate，对创造性和原创性有更高的要求；</li>
+<li>预训练语言模型无法利用隐含的知识来生成令人信服的故事结尾。</li>
+</ol>
+<h3 id="With-graph-embeddings"><a href="#With-graph-embeddings" class="headerlink" title="With graph embeddings"></a>With graph embeddings</h3><ol>
+<li>利用知识图谱丰富从图片中提取的词语来生成故事；</li>
+<li>使用知识图谱丰富输入文本为文本树来解决NLP任务；</li>
+<li>建立诗歌知识图谱来进行关键词匹配等来生成中国传统诗歌；</li>
+<li>利用知识图谱收集三元组来获得相关主题用于智能对话系统。<br>与以上不同的是graph to text没有突出写作的创造性。</li>
+</ol>
+<h2 id="Framework"><a href="#Framework" class="headerlink" title="Framework"></a>Framework</h2><h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><p>从提取的三元组集合中生成五句话的故事。输入是用户指定的关键词集合。</p>
+<h3 id="Framework-1"><a href="#Framework-1" class="headerlink" title="Framework"></a>Framework</h3><ol>
+<li>包含知识增强层和故事生成层，其中三元组为连接两个层的接口，同时也是生成故事的prompt；</li>
+<li>三元组是从知识图谱或者故事语料中提取的；模型首先检查关键词的关系，然后使用知识图谱增加额外信息来生成三元组；</li>
+<li>任务生成分为两个阶段：<ol>
+<li>模型finetune<ol>
+<li>三元组提取：从故事中提取三元组并作为每个故事的prefix来让模型学习利用三元组生成故事的能力。提取三元组的过程涉及到指代消解、词根化等细节。同时故事title也作为prefix加入到要编码的句子中；</li>
+<li>Finetune：GPT-2更多用于长文本的生成，因此加入了flag确定短文的开始和结束，让模型可以自动提取短文内容；</li>
+</ol>
+</li>
+<li>故事生成<br>三元组的entity和relation给予了模型故事的topic和plot。<ol>
+<li>知识增强：给出一个知识图谱数据集，具有足够多的实体和关系，同时关系具有权重帮助模型寻找更合理的路径来生成故事；<br><img src="image1.png" alt="image1" style="zoom:50%;" /></li>
+<li>文本生成：将三元组作为prefix生成故事。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>ROCStories：包含一万个短故事，每个故事有个标题和五句话的内容。</p>
+<h2 id="Metrics"><a href="#Metrics" class="headerlink" title="Metrics"></a>Metrics</h2><p><img src="image1.png" alt="image1" style="zoom:50%;" /></p>
+</article></div></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/Publications"> Publications</a></li><li class="nav_item"><a class="nav-page" href="/Blog"> Blog</a></li><li class="nav_item"><a class="nav-page" href="/Diary"> Diary</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2020 - 2021 by Chuancheng Lv</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script></body></html>
