@@ -1,6 +1,6 @@
 ---
 title: "MLA Deep Dive: How Low-Rank KV Compression Works, Why It Matters, and How It Changed LLM Architecture"
-date: 2026-05-09
+date: 2025-08-22
 tags: [DeepSeek, Architecture, Inference, Attention, MLA]
 summary: "Multi-head Latent Attention (MLA) from DeepSeek-V2 reduces KV Cache by 93.3% through low-rank compression. This post traces the full evolution from MHA→MQA→GQA→MLA, explains the mathematics of latent projection and decoupled RoPE, and analyzes why MLA is becoming the default attention mechanism for next-generation MoE models."
 ---

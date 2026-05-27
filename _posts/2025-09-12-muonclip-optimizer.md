@@ -1,6 +1,6 @@
 ---
 title: "MuonClip: The Optimizer That Tamed Trillion-Parameter Training"
-date: 2026-05-09
+date: 2025-09-12
 tags: [Training, Optimizer, Kimi, Scaling, Muon]
 summary: "Kimi K2 is the first model to successfully apply the Muon optimizer at trillion-parameter scale, training 15.5T tokens with zero loss spikes. Their MuonClip technique — adding QK-norm clipping to the forward pass — solved the instability that had limited Muon to small-scale experiments for years."
 ---

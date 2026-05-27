@@ -1,6 +1,6 @@
 ---
 title: "CISPO vs GRPO vs PPO vs DPO: The Complete Guide to LLM Alignment Algorithms"
-date: 2026-05-09
+date: 2025-11-20
 tags: [Alignment, RLHF, GRPO, DPO, Training, CISPO]
 summary: "A comprehensive technical comparison of the four dominant alignment algorithms. We trace the evolution from PPO's four-model architecture through GRPO's group-relative advantage estimation to CISPO's importance-sampling clipping, with detailed mathematical derivations, memory analysis, training recipes, and guidance on when to use each approach."
 ---

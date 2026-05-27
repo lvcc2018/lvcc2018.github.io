@@ -1,6 +1,6 @@
 ---
 title: "Building an Agent Evaluation Matrix: A Production-Grade Framework"
-date: 2026-05-09
+date: 2025-12-18
 tags: [Agent, Evaluation, Production, Engineering, Metrics]
 summary: "How do you measure an Agent's performance when every interaction involves multiple tool calls, environment interactions, and multi-step reasoning? This post presents a five-dimensional evaluation framework with concrete metric definitions, a production data flywheel, and failure taxonomy derived from real-world deployment experience."
 ---

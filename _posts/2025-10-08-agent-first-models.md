@@ -1,6 +1,6 @@
 ---
 title: "Agent-First Models: The Post-Chatbot Era of Language Models"
-date: 2026-05-09
+date: 2025-10-08
 tags: [Agent, Kimi, MoE, Architecture, Industry, Evaluation]
 summary: "In 2025, a new category of language models emerged: Agent-First. These models are optimized not for conversation but for tool use, code execution, and autonomous task completion. Kimi K2's 27-point SWE-bench lead over DeepSeek-V3 — despite nearly identical architecture — reveals that post-training strategy now matters more than pre-training architecture."
 ---

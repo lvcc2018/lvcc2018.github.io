@@ -1,6 +1,6 @@
 ---
 title: "Qwen3's Hybrid Thinking: Engineering One Model to Think Fast and Slow"
-date: 2026-05-09
+date: 2025-06-05
 tags: [Qwen, Reasoning, Architecture, Alibaba]
 summary: "Qwen3 introduced Hybrid Thinking — a single model that can dynamically switch between fast non-thinking responses and deep chain-of-thought reasoning, controlled by a thinking budget. This post analyzes the training recipe, the thinking budget mechanism, architectural implications, and what it means for the future of unified reasoning models."
 ---

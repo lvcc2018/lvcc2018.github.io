@@ -1,6 +1,6 @@
 ---
 title: "The Data Flywheel: How Production Feedback Continuously Improves Your Agent"
-date: 2026-05-09
+date: 2026-01-15
 tags: [Agent, Training, Data, Production, Systems]
 summary: "The most underrated component of Agent infrastructure is the data flywheel — a closed-loop system that converts production interaction traces into training data for continuous model improvement. This post presents the full architecture, failure taxonomy, training data construction pipeline, and deployment strategy for an Agent data flywheel at scale."
 ---
