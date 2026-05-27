@@ -1,19 +1,17 @@
 ---
-title: Ethan Lu
+title: Ethan Lv
 layout: home
 ---
 
 <div class="hero">
   <div class="hero-text">
-    <h1>Ethan Lu</h1>
-    <p class="subtitle">大模型算法工程师 · LLM Agent · 量化交易</p>
-    <p class="location">Tencent WXG · Beijing</p>
+    <h1>Ethan Lv</h1>
+    <p class="subtitle">LLM Specialist · Agent Infrastructure · Model Alignment</p>
+    <p class="location">Beijing, China</p>
     <p class="social-links">
       <a href="https://github.com/lvcc2018">GitHub</a>
       <span class="sep">·</span>
-      <a href="mailto:thulvcc2017@gmail.com">Email</a>
-      <span class="sep">·</span>
-      <a href="/about">About</a>
+      <a href="mailto:thulvcc2017@gmail.com">thulvcc2017@gmail.com</a>
       <span class="sep">·</span>
       <a href="/blog">Blog</a>
     </p>
@@ -22,94 +20,107 @@ layout: home
 
 ---
 
-## 关于我
+## Summary
 
-目前在**腾讯 WXG** 从事大模型 **Agent 方向** 的研究与工程落地，T10 职级。日常工作聚焦于：
-
-- **Agent 架构**：多 Agent 协作、工具调用（Function Calling / MCP）、Planning 策略、三层记忆系统
-- **模型对齐**：SFT / DPO / GRPO 训练管线，RLHF 全流程
-- **推理优化**：vLLM 部署、PagedAttention、KV Cache 管理、Continuous Batching
-
-业余时间维护 **QuantAce**——A 股多因子量化策略研究平台（111 只股票池，28 个因子，10 个策略）。
+LLM specialist with 4 years of end-to-end experience spanning data strategy, pre-training, post-training alignment (RLHF / DPO / GRPO / OPD), and AI Agent infrastructure. Delivered 70B-scale model training with 10T+ token data pipelines; published 6 papers at **NeurIPS / EMNLP / ACL**, including **C-Eval** (NeurIPS 2023), a widely-adopted Chinese LLM benchmark. Currently focused on Agent infrastructure, online preference optimization, and continual model improvement at **WeChat scale (100M+ DAU)**.
 
 ---
 
-## 研究方向
+## Experience
 
-<div class="research-grid">
+### Tencent Technology (Beijing)
+**Tech Lead, WeChat AI Assistant** · May 2025 — Present
 
-<div class="research-card">
-<h3>🤖 Agent 架构与对齐</h3>
-<ul>
-  <li>ReAct / Plan-Then-Execute / Multi-Agent 协作范式</li>
-  <li>Tool Use 可靠性：结构化输出、错误恢复、Fallback 策略</li>
-  <li>SFT → DPO → GRPO 全链路对齐管线</li>
-  <li>生产环境 Agent 评估体系（任务完成率、工具调用准确率、Token 效率）</li>
-</ul>
+- Architected the WeChat AI Assistant Agent Harness from scratch — designing and implementing tool-calling orchestration, multi-step planning and reasoning, context memory management, and multi-layer safety guardrails for a system serving **hundreds of millions of daily active users**.
+- Led Agent-specific post-training, developing systematic training recipes across instruction following, tool-use alignment, multi-turn consistency, and safety refusal boundaries; introduced **Online Preference Distillation (OPD)** to enable continuous preference alignment post-deployment, leveraging Iterative DPO, GRPO, and Constitutional AI.
+- Built a multi-dimensional Agent evaluation matrix covering single-step tool accuracy, multi-step task completion rate, hallucination rate, safety boundary adherence, and long-horizon consistency, establishing a **data flywheel** for joint model–framework optimization.
+- Drove deep integration of Agent capabilities with the WeChat ecosystem, designing a standardized tool-access protocol that unified tool schemas across Mini Programs, Official Accounts, WeChat Pay, and Search, significantly improving end-to-end task success rates.
+
+### Shenyan Technology (Beijing)
+**LLM Algorithm Engineer** · March 2022 — April 2025
+
+- Led data strategy and training pipeline construction for general-purpose foundation models: designed multi-stage filtering pipelines for pre-training and instruction-tuning data, combining heuristic rules, perplexity distribution analysis, and model-based quality annotation for fine-grained classification and deduplication, ultimately producing **10T high-quality pre-training tokens** and millions of premium SFT samples.
+- Built a comprehensive evaluation framework aligned with training data taxonomy, integrating mainstream benchmarks with proprietary test suites (including temporally relevant and rigorously unleaked evaluation data), establishing a closed-loop of data classification → evaluation alignment → capability diagnosis.
+- Designed a **Scaling Law experiment matrix** grounded in fine-grained data labeling, systematically validating the impact of data mixture ratios, hyperparameters, and curriculum strategies on loss convergence and downstream performance across small-scale models (100M–several B), identifying optimal pre-training recipes that generalized successfully to the full 70B model series.
+- Led multi-dimensional capability improvement initiatives: executed phased **long-context extension (8K → 32K → 128K)** via RoPE base-frequency tuning, data-mixture optimization, and progressive training; simultaneously drove specialized enhancements in STEM reasoning and code generation, with results approaching state-of-the-art models of comparable scale.
+- For the financial vertical domain, constructed **100B high-quality CPT data** from 40T+ raw multi-source corpora; designed and implemented a document-level curriculum learning scheme that organized training data by difficulty and inter-document semantic similarity, combined with dynamic hyperparameter scheduling to effectively mitigate catastrophic forgetting.
+- Delivered long-text summarization and intelligent Q&A product features atop internal LLMs by decomposing tasks into evaluable sub-modules (extraction–compression–rewriting–verification), performing independent data synthesis, quality filtering, and targeted training per module, forming a reusable data flywheel.
+- Applied **DPO training** on auto-constructed preference pairs to substantially reduce hallucination and repetitive generation; implemented **GRPO training** with citation recall as the reward signal, achieving a step-change improvement in generated citation accuracy.
+
+---
+
+## Education
+
+### Tsinghua University
+**M.S. in Computer Science and Technology** · 2021 — 2024  
+Research focus: Natural Language Processing and Large Language Models
+
+### Tsinghua University
+**B.S. in Computer Science and Technology** · 2017 — 2021
+
+---
+
+## Publications
+
+1. **GATEAU: Selecting Influential Samples for Long Context Alignment**  
+   Si et al. · *EMNLP 2025*
+
+2. **Document Segmentation Matters for Retrieval-Augmented Generation**  
+   Wang et al. · *ACL 2025 Findings*
+
+3. **HyperLoRA: Efficient Cross-task Generalization via Constrained Low-Rank Adapters Generation**  
+   Lv et al. · *EMNLP 2024 Findings*
+
+4. **C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models**  
+   Huang et al. · *NeurIPS 2023 (Datasets & Benchmarks)*
+
+5. **Sememe Prediction for BabelNet Synsets using Multilingual and Multimodal Information**  
+   Qi, Lv et al. · *ACL 2022 Findings*
+
+6. **Temporal Cross-Effects in Knowledge Tracing**  
+   Wang et al. · *WSDM 2021*
+
+---
+
+## Skills
+
+<div class="skills-grid">
+
+<div class="skill-block">
+<h3>LLM Training & Alignment</h3>
+<p>Scaling Law experiments & pre-training strategy, SFT data strategy, Iterative DPO / GRPO / OPD / Constitutional AI, CPT with anti-forgetting techniques</p>
 </div>
 
-<div class="research-card">
-<h3>⚡ 推理优化</h3>
-<ul>
-  <li>vLLM / SGLang 部署与调优</li>
-  <li>PagedAttention KV Cache 管理</li>
-  <li>Continuous Batching & Chunked Prefill</li>
-  <li>投机解码、INT8/INT4 量化、前缀缓存</li>
-</ul>
+<div class="skill-block">
+<h3>AI Agent Systems</h3>
+<p>Agent framework architecture, function calling & tool orchestration, multi-step planning & reasoning chains, memory & context management, safety guardrails</p>
 </div>
 
-<div class="research-card">
-<h3>🧠 训练 & 架构</h3>
-<ul>
-  <li>MoE 架构：DeepSeekMoE / Qwen-MoE / Mixtral</li>
-  <li>分布式训练：FSDP / ZeRO-3 / TP + PP</li>
-  <li>长上下文：RoPE 外推 / YaRN / MLA / Linear Attention</li>
-  <li>FP8 混合精度训练</li>
-</ul>
+<div class="skill-block">
+<h3>Data Engineering</h3>
+<p>Large-scale corpus filtering & deduplication (10T+), data synthesis & augmentation, automated annotation & classification, multi-dimensional data evaluation</p>
+</div>
+
+<div class="skill-block">
+<h3>Model Evaluation</h3>
+<p>Benchmark construction (C-Eval), multi-dimensional capability diagnosis, fair evaluation design, unleaked evaluation data management</p>
+</div>
+
+<div class="skill-block">
+<h3>Specialized Capabilities</h3>
+<p>Long-context extension (128K), RAG system design & optimization, STEM / code / reasoning enhancement, catastrophic forgetting mitigation</p>
+</div>
+
+<div class="skill-block">
+<h3>Tech Stack</h3>
+<p>Python, PyTorch, DeepSpeed, Transformers, distributed training (FSDP / Megatron), vector databases & retrieval systems</p>
 </div>
 
 </div>
 
 ---
 
-## 技术栈
-
-<div class="skills">
-
-`LLM` `Agent` `RLHF/DPO/GRPO` `SFT` `MoE`  
-`PyTorch` `DeepSpeed` `FSDP` `FlashAttention`  
-`vLLM` `SGLang` `PagedAttention` `KV Cache`  
-`Python` `C++` `CUDA` `Git` `Linux`  
-`AKShare` `Pandas` `Backtrader` `Quantitative Finance`
-
-</div>
-
----
-
-## 项目
-
-### LLM Agent 平台 · *Tencent WXG*
-
-企业级 Agent 推理平台，支持工具调用、RAG、多 Agent 编排。在生产环境中服务 **百万级用户**。
-
-核心技术决策：
-- 工具调用标准化（OpenAI Function Calling / Anthropic 兼容）
-- 多 Agent 通信机制（共享上下文 vs 消息传递）
-- RAG 管线：Hybrid Search（向量 + BM25）+ BGE-Reranker
-- 推理服务化：vLLM + Prefix Caching + INT8 KV Cache
-
-### QuantAce · 量化策略研究平台
-
-基于 A 股市场的多因子量化策略研究系统。[[GitHub](https://github.com/lvcc2018/QuantAce)]
-
-- **股票池**：111 只 A 股，覆盖主板 + 创业板 + 科创板
-- **因子库**：28 个因子（估值、动量、质量、波动率等维度）
-- **策略**：10 个策略，涨跌停限制模拟
-- **技术栈**：AKShare 数据源 + Parquet 缓存 + Backtrader 回测 + LightGBM 预测
-
----
-
-## 📝 最新文章
+## 📝 Blog
 
 <div class="post-list-home">
 {% for post in site.posts limit:5 %}
@@ -121,4 +132,4 @@ layout: home
 {% endfor %}
 </div>
 
-[📚 全部文章 →](/blog)
+[📚 All posts →](/blog)
