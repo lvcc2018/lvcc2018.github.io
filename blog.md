@@ -5,7 +5,7 @@ layout: default
 
 # 技术博客
 
-大模型算法、Agent 架构、量化策略的技术笔记。
+LLM training, Agent architecture, and model alignment.
 
 <div class="post-list-home">
 {% for post in site.posts %}
