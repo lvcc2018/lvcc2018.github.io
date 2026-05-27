@@ -1,0 +1,36 @@
+# Hugo 配置
+baseURL = 'https://lvcc2018.github.io/'
+languageCode = 'zh-CN'
+title = 'Ethan Lu · LLM Researcher & Quant'
+theme = 'custom'
+
+[params]
+  author = 'Ethan Lu'
+  description = '大模型算法工程师 · 量化交易者 · Agent 方向'
+  email = 'thulvcc2017@gmail.com'
+  location = 'Beijing / Hangzhou'
+
+  # 导航
+  [[params.nav]]
+    name = 'Home'
+    url = '/'
+  [[params.nav]]
+    name = 'About'
+    url = '/about/'
+  [[params.nav]]
+    name = 'Blog'
+    url = '/blog/'
+
+  # 社交链接
+  [[params.social]]
+    name = 'GitHub'
+    url = 'https://github.com/lvcc2018'
+    icon = 'github'
+  [[params.social]]
+    name = 'Email'
+    url = 'mailto:thulvcc2017@gmail.com'
+    icon = 'email'
+
+[markup]
+  [markup.highlight]
+    style = 'dracula'
