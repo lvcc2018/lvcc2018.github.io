@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} · {{ site.title }}</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="/">{{ site.title }}</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    {{ content }}
+  </main>
+  <footer class="container">
+    <hr>
+    <p>
+      <a href="https://github.com/lvcc2018">GitHub</a> ·
+      <a href="mailto:{{ site.email }}">Email</a> ·
+      &copy; {{ site.time | date: "%Y" }} {{ site.author }}
+    </p>
+  </footer>
+</body>
+</html>

@@ -1,7 +1,7 @@
-+++
-title = "Ethan Lu"
-date = 2026-05-08
-+++
+---
+title: Ethan Lu
+layout: default
+---
 
 # Ethan Lu
 
@@ -25,3 +25,7 @@ date = 2026-05-08
 ---
 
 ## 📝 最新文章
+
+{% for post in site.posts limit:5 %}
+- **{{ post.date | date: "%Y-%m-%d" }}** [{{ post.title }}]({{ post.url }})
+{% endfor %}

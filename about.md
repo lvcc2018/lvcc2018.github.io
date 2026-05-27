@@ -1,7 +1,7 @@
-+++
-title = "About · 关于我"
-date = 2026-05-08
-+++
+---
+title: About · 关于我
+layout: default
+---
 
 # 关于我
 
