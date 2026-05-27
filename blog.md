@@ -3,16 +3,24 @@ title: Blog
 layout: default
 ---
 
-# 技术博客
+# Blog
 
 LLM training, Agent architecture, and model alignment.
 
-<div class="post-list-home">
 {% for post in site.posts %}
-<a href="{{ post.url }}" class="post-item">
-  <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-  <span class="post-title">{{ post.title }}</span>
-  <span class="post-tags">{% for tag in post.tags %}<code>{{ tag }}</code> {% endfor %}</span>
-</a>
+<article class="blog-card">
+  <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+  <div class="blog-card-meta">
+    <time>{{ post.date | date: "%B %d, %Y" }}</time>
+    <span class="blog-card-tags">{% for tag in post.tags %}<code>{{ tag }}</code> {% endfor %}</span>
+  </div>
+  {% if post.summary %}
+  <p class="blog-card-summary">{{ post.summary }}</p>
+  {% endif %}
+  <a class="blog-card-link" href="{{ post.url }}">Read →</a>
+</article>
 {% endfor %}
-</div>
+
+{% if site.posts.size == 0 %}
+<p><em>No posts yet.</em></p>
+{% endif %}
