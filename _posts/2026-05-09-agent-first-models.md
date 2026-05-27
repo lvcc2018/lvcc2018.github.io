@@ -1,86 +1,301 @@
 ---
-title: "The Rise of Agent-First Models: Kimi K2, GLM-5, and the Post-Chatbot Era"
+title: "Agent-First Models: The Post-Chatbot Era of Language Models"
 date: 2026-05-09
-tags: [Agent, Kimi, MoE, Architecture, Industry]
-summary: "2025 saw a fundamental shift: the best open-source models are no longer optimized for chat — they're optimized for tool use, code execution, and autonomous problem-solving. Kimi K2's SWE-bench score of 65.8% (vs V3's 38.8%) tells the story."
+tags: [Agent, Kimi, MoE, Architecture, Industry, Evaluation]
+summary: "In 2025, a new category of language models emerged: Agent-First. These models are optimized not for conversation but for tool use, code execution, and autonomous task completion. Kimi K2's 27-point SWE-bench lead over DeepSeek-V3 — despite nearly identical architecture — reveals that post-training strategy now matters more than pre-training architecture."
 ---
 
-## Two Models, Same Architecture, 27 Points Apart
+## The Architecture Paradox
 
-Kimi K2 and DeepSeek-V3 share essentially the same architecture:
+Consider two models:
 
-| Component | DeepSeek-V3 | Kimi K2 |
-|-----------|-------------|---------|
+| | DeepSeek-V3 | Kimi K2 |
+|---|---|---|
 | Architecture | MoE + MLA | MoE + MLA |
 | Total params | 671B | 1T |
 | Activated params | 37B | 32B |
-| Attention | MLA | MLA |
-| Activation | SwiGLU | SwiGLU |
-| Context | 128K | 128K |
+| Attention heads | 128 | 64 |
+| Hidden dim | 7168 | 7168 |
+| MoE hidden dim | 2048 | 2048 |
+| Shared experts | 1 | 1 |
+| Activated experts | 8 | 8 |
+| Activation fn | SwiGLU | SwiGLU |
 
-Yet on SWE-bench Verified (Agentic mode), K2 scores **65.8%** while V3 scores **38.8%**.
+These models share the same fundamental design. Yet on SWE-bench Verified (Agentic mode):
 
-That's a 27-point gap from essentially the same architecture. Where does it come from?
+- DeepSeek-V3: **38.8%**
+- Kimi K2: **65.8%**
 
-## The Data Difference
+A **27-point gap** from architecture twins. What explains this?
 
-The answer is in the post-training. K2's technical report emphasizes:
+## The Data Hypothesis
 
-> "A large-scale agentic data synthesis pipeline and a joint reinforcement learning stage, where the model improves its capabilities through interactions with real and synthetic environments."
+Kimi K2's technical report (arXiv 2507.20534) states:
 
-In plain English: K2 was trained to *do things*, not just *say things*.
+> "During post-training, K2 undergoes a multi-stage post-training process, highlighted by a **large-scale agentic data synthesis pipeline** and a **joint reinforcement learning stage**, where the model improves its capabilities through interactions with real and synthetic environments."
 
-The post-training pipeline for K2 includes:
-1. **Agentic data synthesis**: Generating diverse tool-use scenarios at scale
-2. **Real environment RL**: Interacting with actual code execution environments during RL training
-3. **Joint RL stage**: Optimizing for both helpfulness and task completion simultaneously
+The emphasis is mine. The key words are "agentic data synthesis" and "real environments."
 
-V3's post-training, by contrast, focused on general instruction following and reasoning — not specifically on tool use in real environments.
+### What "Real Environment RL" Means
 
-## The Agent-First Thesis
+Unlike standard RLHF where the model generates text that a reward model scores, K2's RL training involves:
 
-This reflects a broader trend in 2025-2026:
+```python
+# Agentic RL training loop
+for task in agentic_tasks:
+    # 1. Model generates actions
+    actions = model.generate_actions(task_description)
+    
+    # 2. Actions are executed in a real sandbox
+    results = sandbox.execute(actions)
+    
+    # 3. Reward is based on task completion, not text quality
+    reward = task.is_completed(results)  # e.g., "does the code pass the tests?"
+    
+    # 4. Model learns from real environment feedback
+    model.update(actions, reward)
+```
 
-| Model | Release | Agent Benchmark | Philosophy |
-|-------|---------|----------------|------------|
-| DeepSeek-V3 | Dec 2024 | SWE-bench 38.8% | General-purpose reasoning |
-| Kimi K2 | Jul 2025 | SWE-bench 65.8% | **Agent-first** |
-| MiniMax M2.7 | Mar 2026 | Coding Plan leader | **Agent-specialized** |
-| GLM-5.1 | 2026 | Coding Plan leader | **Coding + DSA** |
+This is fundamentally different from RLHF. The model isn't learning to produce text that "looks good" — it's learning to produce actions that *actually work* in a real environment. The reward signal comes from a compiler, a test runner, a file system — not from a neural network.
 
-The industry is splitting into two camps:
-- **Generalists** (DeepSeek-V4, Qwen3.6): Broad capability, thinking modes, long context
-- **Agent-specialists** (Kimi K2, MiniMax M2, GLM-5): Tool use, coding, task completion
+### The Agentic Data Synthesis Pipeline
 
-## What "Agent-First" Means in Practice
+K2's data pipeline generates diverse agentic scenarios:
+1. **Task generation**: LLM generates realistic coding/agent tasks
+2. **Solution generation**: Multiple solution attempts per task
+3. **Environment validation**: Solutions are executed, only correct ones retained
+4. **Preference construction**: Correct solutions become "chosen," incorrect ones become "rejected"
 
-Training an agent-first model means different design choices at every stage:
+This creates a feedback loop: better models → better data generation → better training data → better models.
 
-### Pre-training
-- Higher proportion of code and structured data
-- Multi-turn interaction data in the pre-training corpus
-- Tool-call-formatted examples mixed into the general corpus
+---
 
-### Post-training
-- SFT data with tool calls, not just text responses
-- RL environments with sandboxed code execution
-- Reward signals based on task completion, not just human preference
+## The Agent-First Model Spectrum
 
-### Evaluation
-- SWE-bench, Tau2-Bench, TerminalBench instead of just MMLU
-- Multi-step task completion rate, not just single-turn accuracy
-- Hallucination rate in tool-calling scenarios
+By mid-2026, a clear spectrum has emerged:
 
-## The Implication for Practitioners
+### Tier 1: Pure Agent-First
 
-If you're building an Agent system today, the choice of base model matters more than ever. A model optimized for SWE-bench will dramatically outperform a general-purpose model of the same architecture — not because of architecture differences, but because of what it was trained to do.
+**Kimi K2/K2.5/K2.6**: Designed from the ground up for tool use.
+- SWE-bench Verified: 65.8% (agentic mode)
+- SWE-bench Multilingual: 47.3%
+- Tau2-Bench: 70.6% (retail)
 
-This also means that **post-training strategy is becoming more important than pre-training architecture**. Kimi K2 and DeepSeek-V3 prove that you can have the same MLA + MoE architecture and get wildly different Agent performance based on what you do after pre-training.
+**MiniMax M2.7**: Agent-specialized, coding-focused.
+- Coding Plan optimized
+- Claude API compatible
+- ~90 TPS at launch
 
-## What's Next?
+### Tier 2: Agent-Capable Generalists
 
-The next frontier is **agent-specific architectures** — not just agent-specific training. We're already seeing hints:
+**DeepSeek-V4**: 1M context enables new agentic patterns.
+- Fast Mode (V4-Flash) vs Expert Mode (V4-Pro)
+- Native multimodal for GUI agents
 
-- **Claw group collaboration** (Kimi K2.6): Multi-agent collaboration built into the model's context management
-- **DSA for tool retrieval** (GLM-5.1): Sparse attention patterns optimized for tool schema lookup
-- **Thinking budgets** (Qwen3, MiniMax-M1): Dynamic allocation of compute for planning vs execution
+**GLM-5.1**: DSA for efficient tool schema retrieval.
+- Prefix LM architecture adapted for tool use
+- Introduced DSA from DeepSeek ecosystem
+
+### Tier 3: General-Purpose with Agent Features
+
+**Qwen3.6**: Hybrid Thinking enables reasoning-budgeted agent tasks.
+- 35B-A3B: 3B active for cost-efficient agent deployment
+- Agentic Coding enhanced in 3.6
+
+---
+
+## The Training Recipe That Creates Agent-First Models
+
+### Pre-Training Differences
+
+Agent-first models differ from general-purpose models even at pre-training:
+
+| Component | General-Purpose | Agent-First |
+|-----------|----------------|-------------|
+| Code proportion | 5-10% | **15-25%** |
+| Structured data | Minimal | **JSON, SQL, API schemas** |
+| Multi-turn data | Rare | **Abundant** |
+| Tool-call format | Absent | **Native in corpus** |
+
+### Post-Training Differences
+
+The post-training pipeline is where the gap emerges:
+
+```python
+# General-purpose post-training
+for epoch in range(num_epochs):
+    # SFT on instruction-following data
+    model.sft(instruction_data)
+    
+    # DPO on preference data
+    model.dpo(chosen, rejected)
+    
+    # RLHF with reward model
+    model.rlhf(reward_model)
+
+# Agent-first post-training  
+for iteration in range(num_iterations):
+    # 1. Generate agentic tasks
+    tasks = synthesize_agentic_tasks(model)
+    
+    # 2. Execute in sandbox
+    results = sandbox.execute(model, tasks)
+    
+    # 3. Construct preference data from execution results
+    chosen, rejected = construct_preferences(results)
+    
+    # 4. Update model
+    model.dpo(chosen, rejected)
+    model.grpo(tasks, rule_based_reward)
+    
+    # 5. Evaluate on real benchmarks
+    swb_score = evaluate_swebench(model)
+    
+    # 6. Use results to guide next iteration's task synthesis
+    synthesis_prompt += f"Focus on: {failure_modes}"
+```
+
+The critical difference: **the environment provides ground-truth feedback.** You don't need a reward model to tell you if code compiles.
+
+---
+
+## Evaluation: Why SWE-bench Is Eating the World
+
+The rise of agent-first models has shifted evaluation priorities:
+
+### Old Paradigm (2022-2024)
+- MMLU: "Does the model know things?"
+- HumanEval: "Can the model write a function?"
+- MT-Bench: "Is the model a good conversationalist?"
+
+### New Paradigm (2025-2026)  
+- **SWE-bench Verified**: "Can the model fix a real GitHub issue?"
+- **SWE-bench Multilingual**: "Can it do this across languages?"
+- **Tau2-Bench**: "Can the model use tools to complete a real-world task?"
+- **TerminalBench**: "Can the model operate a terminal?"
+
+These benchmarks measure capability, not just knowledge. A model with perfect MMLU but 0% SWE-bench is useless as an agent.
+
+### The SWE-bench Leaderboard (Mid-2026)
+
+| Model | Agentic Score | Notes |
+|-------|-------------|-------|
+| Claude Opus 4 | ~80% | Closed-source leader |
+| Claude Sonnet 4 | ~73% | Closed-source |
+| **Kimi K2.6** | ~72%* | Open-source leader, multi-agent |
+| **Kimi K2** | 65.8% | Open-source, single-agent |
+| GPT-4.1 | ~55% | Closed-source |
+| **DeepSeek-V4** | ~50%* | Open-source, 1M context |
+| **DeepSeek-V3** | 38.8% | Open-source |
+| Qwen3-235B | 34.4% | Non-thinking mode |
+
+(*estimated from partial reports)
+
+The gap between the best agent-first models and the best general-purpose models is **20-30 points** on the most important agent benchmark. This is not noise.
+
+---
+
+## The Economics of Agent-First
+
+### Inference Cost
+
+Agent tasks consume more tokens per interaction than chat:
+
+| Task Type | Tokens per interaction | Cost (at V3 pricing) |
+|-----------|----------------------|---------------------|
+| Simple chat | ~500 | $0.0002 |
+| Code generation | ~2000 | $0.0008 |
+| SWE-bench task | ~50,000 | $0.02 |
+| Complex multi-step agent | ~200,000 | $0.08 |
+
+At 50K tokens per task, a 1% improvement in SWE-bench score saves ~500 tokens per successful task — the model needs fewer retries. This creates a reinforcing cycle: better agents → lower cost per task → more usage → better training data.
+
+### Model Size Economics
+
+Agent-first models like K2 (1T total, 32B active) and Qwen3.6-35B-A3B (35B, 3B active) are exploring extreme activation sparsity:
+
+| Model | Total params | Activated | Ratio |
+|-------|-------------|-----------|-------|
+| DeepSeek-V3 | 671B | 37B | 5.5% |
+| Kimi K2 | 1T | 32B | 3.2% |
+| Qwen3.6-Flash | 35B | 3B | 8.6% |
+
+The trend: pack more knowledge into fewer activated parameters. For agent tasks, activation sparsity is particularly valuable — different tools and domains activate different experts, so the model can have broad knowledge without paying for it on every token.
+
+---
+
+## What This Means for the Industry
+
+### For Model Developers
+
+If you're training a model in 2026, you need to decide early: is this a chatbot or an agent? The training recipe diverges significantly:
+
+- **Chatbot**: Optimize for helpfulness, harmlessness, honesty (HHH). DPO on human preference data.
+- **Agent**: Optimize for task completion. GRPO/CISPO with environment feedback. SWE-bench as primary metric.
+
+### For Practitioners
+
+When choosing a base model for an Agent system:
+1. **Don't look at MMLU**: It's nearly irrelevant for agent performance
+2. **Prioritize SWE-bench and Tau2-Bench**: These measure what agents actually do
+3. **Test tool-calling accuracy directly**: Even within the same model family, tool-calling quality varies dramatically
+4. **Consider the training recipe**: A model trained with environment feedback will outperform one trained only on human preferences
+
+### For the Research Community
+
+The agent-first trend raises open questions:
+- Can we design architectures specifically for tool use (not just train general architectures for it)?
+- How do we handle the combinatorial explosion of possible tool combinations?
+- What's the equivalent of Chinchilla scaling laws for agent capabilities?
+
+---
+
+## Case Study: The 27-Point Gap
+
+Let's examine specific tasks where K2 dramatically outperforms V3:
+
+### SWE-bench Example: Bug Fix in Django
+
+**Task**: Fix a race condition in Django's cache framework.
+
+**DeepSeek-V3 approach**:
+```
+→ Reads bug report
+→ Generates a fix
+→ Applies the fix  
+→ Result: Tests fail — fix introduces a new bug
+```
+
+**Kimi K2 approach**:
+```
+→ Reads bug report
+→ Reads relevant Django source code (multiple files)
+→ Writes a test that reproduces the bug
+→ Verifies the test fails (confirming reproduction)
+→ Generates a fix
+→ Runs the reproduction test — passes
+→ Runs the full test suite — passes
+→ Verifies no regressions
+```
+
+The difference is not in the model's "intelligence" — both models understand the bug and can generate plausible fixes. The difference is in the *learned workflow*: K2 has internalized a debugging methodology that includes reproduction, verification, and regression testing. This comes from training on real debugging workflows, not from architectural superiority.
+
+---
+
+## The Post-Chatbot Era
+
+We are witnessing a phase transition in LLM development:
+
+**2022-2024: The Chatbot Era**
+- Models optimized for conversation
+- Evaluation: human preference, MMLU
+- Training: RLHF with neural reward models
+- Products: ChatGPT, Claude, Gemini (chat interfaces)
+
+**2025-2026: The Agent Era**  
+- Models optimized for task completion
+- Evaluation: SWE-bench, Tau2-Bench, TerminalBench
+- Training: Environment feedback, rule-based rewards
+- Products: Claude Code, Kimi K2.6 (agent clusters), MiniMax Agent
+
+The models that will dominate the next phase are not necessarily the ones with the best architecture. They're the ones with the best *training environments* — the richest feedback loops between model actions and real-world outcomes.
