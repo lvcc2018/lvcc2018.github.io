@@ -1,10 +1,9 @@
 title: LLM Researcher & Quant
-description: 大模型算法工程师 · 量化交易者 · Agent 方向
+description: 大模型算法工程师 · LLM Agent · 量化交易
 url: https://lvcc2018.github.io
 author: Ethan Lu
 email: thulvcc2017@gmail.com
 
-# Build settings
 markdown: kramdown
 kramdown:
   input: GFM
@@ -16,6 +15,10 @@ defaults:
     values:
       layout: post
   - scope:
+      path: "index.md"
+    values:
+      layout: home
+  - scope:
       path: ""
     values:
-      layout: page
+      layout: default

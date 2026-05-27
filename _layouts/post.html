@@ -4,7 +4,12 @@ layout: default
 <article>
   <header class="post-header">
     <h1>{{ page.title }}</h1>
-    <time class="post-date">{{ page.date | date: "%Y-%m-%d" }}</time>
+    {% if page.date %}<time>{{ page.date | date: "%Y-%m-%d" }}</time>{% endif %}
+    {% if page.tags %}
+    <div class="post-tags-header">
+      {% for tag in page.tags %}<code>{{ tag }}</code> {% endfor %}
+    </div>
+    {% endif %}
   </header>
   <div class="post-content">
     {{ content }}

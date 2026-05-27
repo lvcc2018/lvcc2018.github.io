@@ -3,30 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }} · {{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <title>{% if page.title and page.title != site.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="site-title" href="/">{{ site.title }}</a>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
-      </nav>
-    </div>
-  </header>
-  <main class="container">
-    {{ content }}
-  </main>
-  <footer class="container">
-    <hr>
-    <p>
-      <a href="https://github.com/lvcc2018">GitHub</a> ·
-      <a href="mailto:{{ site.email }}">Email</a> ·
-      &copy; {{ site.time | date: "%Y" }} {{ site.author }}
-    </p>
-  </footer>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <a class="site-title" href="/">{{ site.author }}</a>
+        <p class="site-desc">{{ site.description }}</p>
+        <nav class="sidebar-nav">
+          <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a>
+          <a href="/about" {% if page.url == "/about/" %}class="active"{% endif %}>About</a>
+          <a href="/blog" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="https://github.com/lvcc2018">GitHub</a>
+          <a href="mailto:{{ site.email }}">Email</a>
+        </div>
+      </div>
+    </aside>
+    <main class="content">
+      {{ content }}
+      <footer class="content-footer">
+        © {{ site.time | date: "%Y" }} {{ site.author }} · Built with Jekyll
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
