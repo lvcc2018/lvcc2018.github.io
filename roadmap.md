@@ -110,7 +110,7 @@ layout: raw
   <p>Data compiled from public sources. Parameter counts are approximate. Built with Chart.js. <a href="/">lvcc2018.github.io</a></p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/js/chart.min.js"></script>
 <script>
 const MODELS = [
   // OpenAI
