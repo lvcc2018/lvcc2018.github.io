@@ -97,22 +97,6 @@ Selected publications and documents. Click any title to view details, or read th
 
 ---
 
-## Documents
-
-<div class="paper-list">
-
-<div class="paper-item">
-  <div class="paper-meta">
-    <span class="paper-venue venue-doc">CV</span>
-  </div>
-  <div class="paper-info">
-    <h3>Curriculum Vitae</h3>
-    <p class="paper-authors">Updated May 2026</p>
-    <p class="paper-links">
-      <a href="/papers/Ethan_Lv_CV.pdf" target="_blank">Download PDF</a>
-      · <a href="/viewer?file=Ethan_Lv_CV.pdf">Read inline →</a>
-    </p>
-  </div>
-</div>
-
-</div>
+<p class="paper-links" style="margin-top: 32px; color: var(--text-muted); font-size: 0.85em;">
+  📧 For a copy of my CV, please <a href="mailto:thulvcc2017@gmail.com">email me</a>.
+</p>
