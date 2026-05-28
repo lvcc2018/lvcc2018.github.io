@@ -1,0 +1,29 @@
+---
+title: PDF Viewer
+layout: raw
+---
+
+<style>
+  body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #525659; }
+  .viewer-bar {
+    background: #323639; color: #ccc; padding: 8px 16px; display: flex;
+    align-items: center; gap: 12px; font-family: -apple-system, sans-serif; font-size: 14px;
+  }
+  .viewer-bar a { color: #8ab4f8; text-decoration: none; }
+  .viewer-bar a:hover { text-decoration: underline; }
+  iframe { width: 100%; height: calc(100vh - 40px); border: none; }
+</style>
+<div class="viewer-bar">
+  <a href="/papers">← Back to Papers</a>
+  <span id="filename"></span>
+</div>
+<iframe id="viewer" src=""></iframe>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  if (file) {
+    document.getElementById('filename').textContent = file;
+    document.getElementById('viewer').src = '/papers/' + encodeURIComponent(file) + '#view=FitH';
+  }
+</script>
