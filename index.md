@@ -3,133 +3,189 @@ title: Ethan Lv
 layout: home
 ---
 
-<div class="hero">
+<div class="hero" id="hero">
   <div class="hero-text">
     <h1>Ethan Lv</h1>
     <p class="subtitle">LLM Specialist · Agent Infrastructure · Model Alignment</p>
     <p class="location">Beijing, China</p>
-    <p class="social-links">
-      <a href="https://github.com/lvcc2018">GitHub</a>
-      <span class="sep">·</span>
-      <a href="mailto:thulvcc2017@gmail.com">thulvcc2017@gmail.com</a>
-      <span class="sep">·</span>
-      <a href="/blog">Blog</a>
-    </p>
   </div>
 </div>
 
----
-
-## Summary
-
-LLM specialist with 4 years of end-to-end experience spanning data strategy, pre-training, post-training alignment (RLHF / DPO / GRPO / OPD), and AI Agent infrastructure. Delivered 70B-scale model training with 10T+ token data pipelines; published 6 papers at **NeurIPS / EMNLP / ACL**, including **C-Eval** (NeurIPS 2023), a widely-adopted Chinese LLM benchmark. Currently focused on Agent infrastructure, online preference optimization, and continual model improvement at **WeChat scale (100M+ DAU)**.
-
----
-
-## Experience
-
-### Tencent Technology (Beijing)
-**Tech Lead, WeChat AI Assistant** · May 2025 — Present
-
-- Architected the WeChat AI Assistant Agent Harness from scratch — designing and implementing tool-calling orchestration, multi-step planning and reasoning, context memory management, and multi-layer safety guardrails for a system serving **hundreds of millions of daily active users**.
-- Led Agent-specific post-training, developing systematic training recipes across instruction following, tool-use alignment, multi-turn consistency, and safety refusal boundaries; introduced **Online Preference Distillation (OPD)** to enable continuous preference alignment post-deployment, leveraging Iterative DPO, GRPO, and Constitutional AI.
-- Built a multi-dimensional Agent evaluation matrix covering single-step tool accuracy, multi-step task completion rate, hallucination rate, safety boundary adherence, and long-horizon consistency, establishing a **data flywheel** for joint model–framework optimization.
-- Drove deep integration of Agent capabilities with the WeChat ecosystem, designing a standardized tool-access protocol that unified tool schemas across Mini Programs, Official Accounts, WeChat Pay, and Search, significantly improving end-to-end task success rates.
-
-### Shenyan Technology (Beijing)
-**LLM Algorithm Engineer** · March 2022 — April 2025
-
-- Led data strategy and training pipeline construction for general-purpose foundation models: designed multi-stage filtering pipelines for pre-training and instruction-tuning data, combining heuristic rules, perplexity distribution analysis, and model-based quality annotation for fine-grained classification and deduplication, ultimately producing **10T high-quality pre-training tokens** and millions of premium SFT samples.
-- Built a comprehensive evaluation framework aligned with training data taxonomy, integrating mainstream benchmarks with proprietary test suites (including temporally relevant and rigorously unleaked evaluation data), establishing a closed-loop of data classification → evaluation alignment → capability diagnosis.
-- Designed a **Scaling Law experiment matrix** grounded in fine-grained data labeling, systematically validating the impact of data mixture ratios, hyperparameters, and curriculum strategies on loss convergence and downstream performance across small-scale models (100M–several B), identifying optimal pre-training recipes that generalized successfully to the full 70B model series.
-- Led multi-dimensional capability improvement initiatives: executed phased **long-context extension (8K → 32K → 128K)** via RoPE base-frequency tuning, data-mixture optimization, and progressive training; simultaneously drove specialized enhancements in STEM reasoning and code generation, with results approaching state-of-the-art models of comparable scale.
-- For the financial vertical domain, constructed **100B high-quality CPT data** from 40T+ raw multi-source corpora; designed and implemented a document-level curriculum learning scheme that organized training data by difficulty and inter-document semantic similarity, combined with dynamic hyperparameter scheduling to effectively mitigate catastrophic forgetting.
-- Delivered long-text summarization and intelligent Q&A product features atop internal LLMs by decomposing tasks into evaluable sub-modules (extraction–compression–rewriting–verification), performing independent data synthesis, quality filtering, and targeted training per module, forming a reusable data flywheel.
-- Applied **DPO training** on auto-constructed preference pairs to substantially reduce hallucination and repetitive generation; implemented **GRPO training** with citation recall as the reward signal, achieving a step-change improvement in generated citation accuracy.
-
----
-
-## Education
-
-### Tsinghua University
-**M.S. in Computer Science and Technology** · 2021 — 2024  
-Research focus: Natural Language Processing and Large Language Models
-
-### Tsinghua University
-**B.S. in Computer Science and Technology** · 2017 — 2021
-
----
-
-## Publications
-
-1. **GATEAU: Selecting Influential Samples for Long Context Alignment**  
-   Si et al. · *EMNLP 2025*
-
-2. **Document Segmentation Matters for Retrieval-Augmented Generation**  
-   Wang et al. · *ACL 2025 Findings*
-
-3. **HyperLoRA: Efficient Cross-task Generalization via Constrained Low-Rank Adapters Generation**  
-   Lv et al. · *EMNLP 2024 Findings*
-
-4. **C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models**  
-   Huang et al. · *NeurIPS 2023 (Datasets & Benchmarks)*
-
-5. **Sememe Prediction for BabelNet Synsets using Multilingual and Multimodal Information**  
-   Qi, Lv et al. · *ACL 2022 Findings*
-
-6. **Temporal Cross-Effects in Knowledge Tracing**  
-   Wang et al. · *WSDM 2021*
-
----
-
-## Skills
-
-<div class="skills-grid">
-
-<div class="skill-block">
-<h3>LLM Training & Alignment</h3>
-<p>Scaling Law experiments & pre-training strategy, SFT data strategy, Iterative DPO / GRPO / OPD / Constitutional AI, CPT with anti-forgetting techniques</p>
+<div class="terminal-wrapper" id="terminal">
+  <div class="terminal-bar">
+    <span class="terminal-dot dot-red"></span>
+    <span class="terminal-dot dot-yellow"></span>
+    <span class="terminal-dot dot-green"></span>
+    <span class="terminal-title">ethan@agent ~ type <em>help</em> to explore</span>
+  </div>
+  <div class="terminal-body" id="terminal-body">
+    <div class="terminal-line">
+      <span class="terminal-prompt">ethan@agent:~$ </span>
+      <span class="terminal-welcome">Welcome to my terminal. Type <code>help</code> to see available commands.</span>
+    </div>
+    <div class="terminal-line" id="terminal-input-line">
+      <span class="terminal-prompt">ethan@agent:~$ </span><span class="terminal-input" id="terminal-input" contenteditable="true"></span><span class="terminal-cursor" id="cursor">▊</span>
+    </div>
+  </div>
 </div>
 
-<div class="skill-block">
-<h3>AI Agent Systems</h3>
-<p>Agent framework architecture, function calling & tool orchestration, multi-step planning & reasoning chains, memory & context management, safety guardrails</p>
+<div class="thinking-section">
+  <h2>💭 What I'm Thinking About</h2>
+  <div class="thinking-grid" id="thinking-grid">
+    <div class="thinking-card">
+      <div class="thinking-icon">⚡</div>
+      <h3>Online Preference Distillation</h3>
+      <p>Can we continuously align deployed models without costly offline retraining? Exploring lightweight distillation pipelines that close the loop between production feedback and model improvement.</p>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-icon">🤖</div>
+      <h3>Agent Evaluation Beyond Accuracy</h3>
+      <p>Current benchmarks measure task completion, but real Agent quality requires measuring hallucination rate, safety adherence, and long-horizon consistency — all of which need production data.</p>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-icon">🧠</div>
+      <h3>Architecture vs Training: What Matters More?</h3>
+      <p>Kimi K2 and DeepSeek-V3 share the same MLA+MoE architecture yet differ by 27 points on SWE-bench. Post-training recipe &gt; architecture. But how far does this go?</p>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-icon">🔬</div>
+      <h3>Sparse Attention for 1M+ Context</h3>
+      <p>DSA/NSA show that trainable sparsity beats static patterns. The next step: can sparse attention be dynamic — allocating more compute to harder parts of the input?</p>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-icon">🏗️</div>
+      <h3>Multi-Agent Architectures at Scale</h3>
+      <p>When should agents collaborate vs compete? What communication protocol works best? How do you prevent agent hallucinations from cascading through a team?</p>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-icon">📊</div>
+      <h3>Training Data Curation with LLM Judges</h3>
+      <p>Using strong LLMs as data quality filters creates a dependency loop. How do we break it? Weak-to-strong generalization might be part of the answer.</p>
+    </div>
+  </div>
 </div>
 
-<div class="skill-block">
-<h3>Data Engineering</h3>
-<p>Large-scale corpus filtering & deduplication (10T+), data synthesis & augmentation, automated annotation & classification, multi-dimensional data evaluation</p>
+<div class="post-list-home" style="margin-top: 48px;">
+  <h2>📝 Latest Writing</h2>
+  {% for post in site.posts limit:5 %}
+  <a href="{{ post.url }}" class="post-item">
+    <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+    <span class="post-title">{{ post.title }}</span>
+    <span class="post-tags">{% for tag in post.tags %}<code>{{ tag }}</code> {% endfor %}</span>
+  </a>
+  {% endfor %}
 </div>
 
-<div class="skill-block">
-<h3>Model Evaluation</h3>
-<p>Benchmark construction (C-Eval), multi-dimensional capability diagnosis, fair evaluation design, unleaked evaluation data management</p>
-</div>
+<p style="margin-top: 24px;"><a href="/blog">📚 All posts →</a></p>
 
-<div class="skill-block">
-<h3>Specialized Capabilities</h3>
-<p>Long-context extension (128K), RAG system design & optimization, STEM / code / reasoning enhancement, catastrophic forgetting mitigation</p>
-</div>
+<script>
+(function() {
+  const body = document.getElementById('terminal-body');
+  const input = document.getElementById('terminal-input');
+  const cursor = document.getElementById('cursor');
+  const inputLine = document.getElementById('terminal-input-line');
+  
+  const data = {
+    about: `<strong>Ethan Lv</strong> — LLM Specialist at Tencent WXG (Tech Lead, WeChat AI Assistant).
+    <br>4 years of end-to-end experience spanning data strategy, pre-training,
+    post-training alignment (RLHF / DPO / GRPO / OPD), and Agent infrastructure.
+    <br>Published 6 papers at NeurIPS / EMNLP / ACL, including C-Eval (NeurIPS 2023).
+    <br>Currently focused on Agent orchestration, online preference optimization, and
+    continual model improvement at WeChat scale (100M+ DAU).`,
+    
+    experience: `<strong>Tencent (Beijing)</strong> — Tech Lead, WeChat AI Assistant — May 2025–Present
+    <br>• Architected Agent harness from scratch: tool-calling, planning, memory, safety guardrails
+    <br>• Led post-training: SFT, DPO, GRPO, Constitutional AI, Online Preference Distillation
+    <br>• Built multi-dimensional Agent evaluation matrix (tool accuracy, task completion, hallucination)
+    <br>• Integrated Agent with WeChat ecosystem: Mini Programs, Official Accounts, Pay, Search
+    <br><br><strong>Shenyan Technology (Beijing)</strong> — LLM Algorithm Engineer — Mar 2022–Apr 2025
+    <br>• Led data strategy for 70B-scale models: 10T+ tokens, multi-stage filtering pipelines
+    <br>• Designed Scaling Law experiment matrix, validated data mixture and curriculum strategies
+    <br>• Executed long-context extension: 8K→32K→128K via RoPE tuning and progressive training
+    <br>• Applied DPO and GRPO training for hallucination reduction and citation accuracy`,
+    
+    papers: `<strong>6 papers at NeurIPS / EMNLP / ACL / WSDM:</strong>
+    <br>1. GATEAU: Selecting Influential Samples for Long Context Alignment — EMNLP 2025
+    <br>2. Document Segmentation Matters for RAG — ACL 2025 Findings
+    <br>3. HyperLoRA: Constrained Low-Rank Adapters Generation — EMNLP 2024 Findings
+    <br>4. C-Eval: Chinese LLM Evaluation Suite — NeurIPS 2023 (Datasets & Benchmarks)
+    <br>5. Sememe Prediction for BabelNet Synsets — ACL 2022 Findings
+    <br>6. Temporal Cross-Effects in Knowledge Tracing — WSDM 2021`,
+    
+    skills: `<strong>LLM Training & Alignment:</strong> Scaling Laws, SFT data strategy, Iterative DPO / GRPO / OPD
+    <br><strong>AI Agent Systems:</strong> Agent framework, function calling, multi-step planning, safety guardrails
+    <br><strong>Data Engineering:</strong> 10T+ corpus filtering, data synthesis, automated annotation
+    <br><strong>Model Evaluation:</strong> Benchmark construction (C-Eval), capability diagnosis, unleaked eval data
+    <br><strong>Tech Stack:</strong> Python, PyTorch, DeepSpeed, Transformers, FSDP, vLLM, vector databases`,
+    
+    education: `<strong>Tsinghua University</strong>
+    <br>M.S. Computer Science (2021–2024) — NLP & Large Language Models
+    <br>B.S. Computer Science (2017–2021)`,
+    
+    contact: `📧 <a href="mailto:thulvcc2017@gmail.com">thulvcc2017@gmail.com</a>
+    <br>🐙 <a href="https://github.com/lvcc2018">github.com/lvcc2018</a>
+    <br>📄 <a href="/about">Full about page</a>`,
+    
+    blog: `📝 <a href="/blog">Blog index</a> — 10 posts on LLM architecture, alignment, Agent systems.
+    <br>Latest: "MLA Deep Dive", "Agent-First Models", "CISPO vs GRPO vs PPO", "The Data Flywheel"`,
+    
+    help: `<strong>Available commands:</strong>
+    <br>  <code>about</code>       — Who I am
+    <br>  <code>experience</code>  — Work history
+    <br>  <code>papers</code>      — Publications
+    <br>  <code>skills</code>      — Technical skills
+    <br>  <code>education</code>   — Academic background
+    <br>  <code>contact</code>     — Get in touch
+    <br>  <code>blog</code>        — Latest writing
+    <br>  <code>clear</code>       — Clear terminal
+    <br>  <code>help</code>        — Show this message`,
+  };
 
-<div class="skill-block">
-<h3>Tech Stack</h3>
-<p>Python, PyTorch, DeepSpeed, Transformers, distributed training (FSDP / Megatron), vector databases & retrieval systems</p>
-</div>
+  function createLine(text, isResponse) {
+    const div = document.createElement('div');
+    div.className = 'terminal-line' + (isResponse ? ' terminal-response' : '');
+    div.innerHTML = text;
+    body.insertBefore(div, inputLine);
+  }
 
-</div>
+  function createPrompt() {
+    const div = document.createElement('div');
+    div.className = 'terminal-line terminal-response';
+    div.innerHTML = '<span class="terminal-prompt">ethan@agent:~$ </span>' + 
+      '<span style="color:var(--terminal-text)">' + (input.textContent || '') + '</span>';
+    body.insertBefore(div, inputLine);
+  }
 
----
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const cmd = input.textContent.trim().toLowerCase();
+      
+      if (cmd === 'clear') {
+        while (body.firstChild !== inputLine) {
+          body.removeChild(body.firstChild);
+        }
+      } else if (data[cmd]) {
+        createPrompt();
+        createLine(data[cmd], true);
+      } else if (cmd) {
+        createPrompt();
+        createLine(`<span style="color:#f87171">command not found: ${cmd}</span>. Type <code>help</code> for available commands.`, true);
+      }
+      
+      input.textContent = '';
+      body.scrollTop = body.scrollHeight;
+    }
+  });
 
-## 📝 Blog
+  // Focus on click anywhere in terminal
+  document.getElementById('terminal').addEventListener('click', function() {
+    input.focus();
+  });
 
-<div class="post-list-home">
-{% for post in site.posts limit:5 %}
-<a href="{{ post.url }}" class="post-item">
-  <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-  <span class="post-title">{{ post.title }}</span>
-  <span class="post-tags">{% for tag in post.tags %}<code>{{ tag }}</code> {% endfor %}</span>
-</a>
-{% endfor %}
-</div>
-
-[📚 All posts →](/blog)
+  // Blinking cursor
+  setInterval(function() {
+    cursor.style.visibility = cursor.style.visibility === 'hidden' ? 'visible' : 'hidden';
+  }, 530);
+})();
+</script>

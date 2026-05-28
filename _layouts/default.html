@@ -19,8 +19,14 @@
           <a href="/blog" {% if page.url == "/blog/" %}class="active"{% endif %}>Blog</a>
         </nav>
         <div class="sidebar-footer">
-          <a href="https://github.com/lvcc2018">GitHub</a>
-          <a href="mailto:{{ site.email }}">Email</a>
+          <div class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
+            <span data-theme="light" class="active">☀️</span>
+            <span data-theme="dark">🌙</span>
+          </div>
+          <div class="sidebar-footer-links">
+            <a href="https://github.com/lvcc2018">GitHub</a>
+            <a href="mailto:{{ site.email }}">Email</a>
+          </div>
         </div>
       </div>
     </aside>
@@ -31,5 +37,37 @@
       </footer>
     </main>
   </div>
+  <script>
+  (function() {
+    var toggle = document.getElementById('theme-toggle');
+    var body = document.body;
+
+    // Load saved theme
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      body.classList.add('dark');
+      updateToggle('dark');
+    }
+
+    toggle.addEventListener('click', function() {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        updateToggle('light');
+      } else {
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        updateToggle('dark');
+      }
+    });
+
+    function updateToggle(theme) {
+      var spans = toggle.querySelectorAll('span');
+      spans.forEach(function(s) {
+        s.classList.toggle('active', s.dataset.theme === theme);
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
