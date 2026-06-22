@@ -76,7 +76,7 @@ layout: home
   {% endfor %}
 </div>
 
-<p style="margin-top: 24px;"><a href="/blog">📚 All posts →</a></p>
+
 
 <script>
 (function() {
@@ -126,9 +126,6 @@ layout: home
     <br>🐙 <a href="https://github.com/lvcc2018">github.com/lvcc2018</a>
     <br>📄 <a href="/about">Full about page</a>`,
     
-    blog: `📝 <a href="/blog">Blog index</a> — 10 posts on LLM architecture, alignment, Agent systems.
-    <br>Latest: "MLA Deep Dive", "Agent-First Models", "CISPO vs GRPO vs PPO", "The Data Flywheel"`,
-    
     help: `<strong>Available commands:</strong>
     <br>  <code>about</code>       — Who I am
     <br>  <code>experience</code>  — Work history
@@ -136,7 +133,6 @@ layout: home
     <br>  <code>skills</code>      — Technical skills
     <br>  <code>education</code>   — Academic background
     <br>  <code>contact</code>     — Get in touch
-    <br>  <code>blog</code>        — Latest writing
     <br>  <code>clear</code>       — Clear terminal
     <br>  <code>help</code>        — Show this message`,
   };
