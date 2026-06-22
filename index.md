@@ -65,16 +65,7 @@ layout: home
   </div>
 </div>
 
-<div class="post-list-home" style="margin-top: 48px;">
-  <h2>📝 Latest Writing</h2>
-  {% for post in site.posts limit:5 %}
-  <a href="{{ post.url }}" class="post-item">
-    <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-    <span class="post-title">{{ post.title }}</span>
-    <span class="post-tags">{% for tag in post.tags %}<code>{{ tag }}</code> {% endfor %}</span>
-  </a>
-  {% endfor %}
-</div>
+
 
 
 
